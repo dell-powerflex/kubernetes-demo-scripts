@@ -38,6 +38,10 @@ case "$2" in
 			$KUBECTL taint node $NODE key=value:NoSchedule && kubectl delete pod $POD
 		EOF
 	;;
+	*)
+		echo "Usage: $0 <release-name> <init [scaling-factor] | bench [transactions] [clients] | shell | kill-and-move>"
+	;;
+
 esac
 echo $COMMAND
 eval $COMMAND
