@@ -1,7 +1,7 @@
  #!/bin/bash
 
-PGPASSWORD=$(kubectl get secret --namespace default ${1}-postgresql -o jsonpath="{.data.postgres-password}" | base64 --decode; echo)
 KUBECTL=/usr/bin/kubectl
+PGPASSWORD=$($KUBECTL get secret --namespace default ${1}-postgresql -o jsonpath="{.data.postgres-password}" | base64 --decode; echo)
 
 case "$2" in
 	init)
@@ -35,7 +35,7 @@ case "$2" in
 		NODE=`$KUBECTL get pods -o wide | grep ${1}-postgresql | awk '{print $7}'`
 		POD=`$KUBECTL get pods -o wide | grep ${1}-postgresql | awk '{print $1}'`
 		read -r -d '' COMMAND <<-EOF
-			$KUBECTL taint node $NODE key=value:NoSchedule && kubectl delete pod $POD
+			$KUBECTL taint node $NODE key=value:NoSchedule && $KUBECTL delete pod $POD
 		EOF
 	;;
 	*)
