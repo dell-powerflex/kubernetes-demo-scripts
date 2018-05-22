@@ -3,6 +3,16 @@
 KUBECTL=/usr/bin/kubectl
 PGPASSWORD=$($KUBECTL get secret --namespace default ${1}-postgresql -o jsonpath="{.data.postgres-password}" | base64 --decode; echo)
 
+function usage() {
+	echo "Usage: $0 <release-name> <init [scaling-factor] | bench [transactions] [clients] | shell | kill-and-move>"
+}
+
+if [ $# -lt 2 ]
+then
+	echo "You must supply a release and command"
+	usage
+fi
+
 case "$2" in
 	init)
 		size=${3:-100}
@@ -39,7 +49,7 @@ case "$2" in
 		EOF
 	;;
 	*)
-		echo "Usage: $0 <release-name> <init [scaling-factor] | bench [transactions] [clients] | shell | kill-and-move>"
+		usage
 	;;
 
 esac
