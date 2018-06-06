@@ -48,6 +48,11 @@ case "$2" in
 			$KUBECTL taint node $NODE key=value:NoSchedule && $KUBECTL delete pod $POD
 		EOF
 	;;
+	cleanup)
+		read -r -d '' COMMAND <<-EOF
+			$KUBECTL taint node --all key:NoSchedule-
+		EOF
+	;;
 	*)
 		usage
 	;;
