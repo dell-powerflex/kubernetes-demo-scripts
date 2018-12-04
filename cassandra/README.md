@@ -17,7 +17,7 @@ This demo assumes the existence of a Kubernetes cluster with the following requi
 **1. Download the [`csstress_script.sh`](csstress_script.sh) for easy access to `kubectl` several kubectl commands later in the demo.**
 
 ```bash
-$ wget <To Be Updated>
+$ wget https://raw.githubusercontent.com/VxFlex-OS/kubernetes-demo-scripts/master/cassandra/csstress_script.sh
 $ chmod +x csstress_script.sh
 ```
 
