@@ -5,3 +5,4 @@ This repository provides a number of VxFlex Open Storage related demo scripts fo
 
 Available Demos:
 * [VxFlex Open Storage with PostgreSQL](postgresql)
+* [VxFlex Open Storage with Cassandra](cassandra)
