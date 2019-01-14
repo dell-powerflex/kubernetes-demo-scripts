@@ -1,7 +1,7 @@
  #!/bin/bash
 
 KUBECTL=/usr/bin/kubectl
-PGPASSWORD=$($KUBECTL get secret --namespace default ${1}-postgresql -o jsonpath="{.data.postgres-password}" | base64 --decode; echo)
+PGPASSWORD=$($KUBECTL get secret --namespace default ${1}-postgresql -o jsonpath="{.data.postgresql-password}" | base64 --decode; echo)
 
 function usage() {
 	echo "Usage: $0 <release-name> <init [scaling-factor] | bench [transactions] [clients] | shell | kill-and-move>"
